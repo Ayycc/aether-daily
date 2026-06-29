@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Aether Daily">
+    <title>Aether Daily • The AI Newspaper</title>
+    
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiQWV0aGVyIERhaWx5Iiwic2hvcnRfbmFtZSI6IkFldGhlciIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMTIxMTBmIiwiZGlyZWN0aW9uIjoibHRyIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxOTInIGhlaWdodD0nMTkyJyB2aWV3Qm94PScwIDAgMTkyIDE5Mic+PHJlY3Qgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIGZpbGw9JyMxMjExMGYnLz48cmVjdCB4PScyMCcgeT0nMjAnIHdpZHRoPScxNTInIGhlaWdodD0nMTUyJyBmaWxsPSdub25lJyBzdHJva2U9JyNmNGU5ZDgnIHN0cm9rZS13aWR0aD0nMTInLz48dGV4dCB4PSc5NicgeT0nMTEwJyBmb250LWZhbWlseT0nUGxheWZhaXIgRGlzcGxheScgZm9udC1zaXplPSc3MCcgZm9udC13ZWlnaHQ9JzkwMCcgZmlsbD0nI2Y0ZTlkOCcgdGV4dC1hbmNob3I9J21pZGRsZSc+QURUPC90ZXh0Pjwvc3ZnPiIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcrbWxtIn1dfQ==">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxOTInIGhlaWdodD0nMTkyJyB2aWV3Qm94PScwIDAgMTkyIDE5Mic+PHJlY3Qgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIGZpbGw9JyMxMjExMGYnLz48cmVjdCB4PScyMCcgeT0nMjAnIHdpZHRoPScxNTInIGhlaWdodD0nMTUyJyBmaWxsPSdub25lJyBzdHJva2U9JyNmNGU5ZDgnIHN0cm9rZS13aWR0aD0nMTInLz48dGV4dCB4PSc5NicgeT0nMTEwJyBmb250LWZhbWlseT0nUGxheWZhaXIgRGlzcGxheScgZm9udC1zaXplPSc3MCcgZm9udC13ZWlnaHQ9JzkwMCcgZmlsbD0nI2Y0ZTlkOCcgdGV4dC1hbmNob3I9J21pZGRsZSc+QURUPC90ZXh0Pjwvc3ZnPg==">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Source+Sans+3:wght@400;500;600&amp;display=swap');
+        
+        body {
+            font-family: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #12110f;
+            color: #e8d9c2;
+        }
+        
+        .vintage-paper {
+            background: #1f1d1a;
+            box-shadow: 0 0 0 1px #3a3630,
+                        0 10px 30px -15px rgba(0,0,0,0.5);
+        }
+
+        .masthead {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+            text-shadow: 2px 2px 0 #3a3630;
+        }
+
+        .vintage-headline {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            font-size: 13px;
+            color: #8b7f6e;
+        }
+
+        .article-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #3a3630;
+        }
+        
+        .article-card:active {
+            transform: translateY(1px);
+        }
+
+        .category-widget {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #3a3630;
+        }
+        
+        .category-widget:active {
+            transform: scale(0.96);
+        }
+
+        .page-turn {
+            animation: pageTurn 0.65s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        @keyframes pageTurn {
+            0% {
+                opacity: 0.2;
+                transform: translateY(40px) rotateX(12deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="ios-safe">
+    <!-- iOS Status Bar -->
+    <div class="bg-[#12110f] border-b border-[#3a3630] px-4 py-1 flex items-center justify-between text-xs text-[#8b7f6e]">
+        <div class="font-mono">9:41</div>
+        <div class="flex items-center gap-1.5">
+            <i class="fa-solid fa-signal"></i>
+            <i class="fa-solid fa-wifi"></i>
+            <i class="fa-solid fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- Dark Vintage Masthead -->
+    <div class="vintage-paper border-b border-[#3a3630] px-5 pt-7 pb-5">
+        <div class="max-w-2xl mx-auto flex flex-col items-center">
+            <div class="flex items-center justify-center w-full gap-4">
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent to-[#8b5e3c]"></div>
+                <h1 class="masthead text-7xl tracking-[0.3em] text-[#e8d9c2]">AETHER</h1>
+                <div class="h-px flex-1 bg-gradient-to-l from-transparent to-[#8b5e3c]"></div>
+            </div>
+            <div class="-mt-2">
+                <span class="text-6xl font-black tracking-[0.2em] text-[#e8d9c2]">DAILY</span>
+            </div>
+            
+            <div class="mt-3 text-center">
+                <span id="current-date" class="font-semibold text-[#c5b8a3] text-sm tracking-[1.5px]"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4">
+        
+        <!-- BREAKING FRONT PAGE HERO -->
+        <div onclick="showArticle(0)" class="cursor-pointer mt-5 mb-6">
+            <div class="vintage-paper article-card rounded-2xl overflow-hidden border border-[#3a3630]">
+                <div class="h-52 bg-[#12110f] flex items-center justify-center relative">
+                    <div class="text-center">
+                        <div class="text-[#e8d9c2] text-6xl mb-1 opacity-80">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <div class="inline-block px-4 py-1 bg-[#8b5e3c] text-[#e8d9c2] text-xs font-bold tracking-[2px]">BREAKING • FRONT PAGE</div>
+                    </div>
+                    <div class="absolute bottom-4 right-4 bg-black/70 text-[#e8d9c2] text-xs px-3 py-px rounded flex items-center gap-1.5 font-medium">
+                        <i class="fa-brands fa-x-twitter"></i>
+                        <span>45.2k</span>
+                    </div>
+                </div>
+                
+                <div class="px-6 pt-5 pb-6">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs font-bold px-3 py-px bg-[#8b5e3c] text-[#e8d9c2] tracking-wider rounded">MODELS</span>
+                    </div>
+                    
+                    <h2 class="vintage-headline text-4xl leading-none text-[#e8d9c2]">
+                        OpenAI Unveils GPT-5.6 Family: Sol, Terra &amp; Luna
+                    </h2>
+                    <p class="mt-3 text-lg text-[#c5b8a3]">Limited preview released amid regulatory discussions</p>
+                    
+                    <div class="flex items-center justify-between mt-5 text-sm">
+                        <div class="font-medium text-[#e8d9c2]">
+                            OpenAI <span class="text-[#8b5e3c]">• June 29, 2026 • 2:14 PM</span>
+                        </div>
+                        <div class="flex items-center gap-1 text-red-600 font-semibold">
+                            <i class="fa-solid fa-heart"></i>
+                            <span>45.2k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY WIDGETS -->
+        <div class="mt-2 mb-8">
+            <div class="section-header px-1 mb-3 text-center">SECTIONS</div>
+            <div class="grid grid-cols-5 gap-2">
+                <button onclick="openCategoryPage('AGENTS')" class="category-widget vintage-paper rounded-2xl py-4 text-center active:bg-[#2a2824]">
+                    <div class="text-[#8b5e3c] text-xl"><i class="fa-solid fa-robot"></i></div>
+                    <div class="text-xs font-semibold tracking-wider mt-1.5">AGENTS</div>
+                </button>
+                <button onclick="openCategoryPage('COMMUNITY')" class="category-widget vintage-paper rounded-2xl py-4 text-center active:bg-[#2a2824]">
+                    <div class="text-[#8b5e3c] text-xl"><i class="fa-solid fa-users"></i></div>
+                    <div class="text-xs font-semibold tracking-wider mt-1.5">COMMUNITY</div>
+                </button>
+                <button onclick="openCategoryPage('MODELS')" class="category-widget vintage-paper rounded-2xl py-4 text-center active:bg-[#2a2824]">
+                    <div class="text-[#8b5e3c] text-xl"><i class="fa-solid fa-robot"></i></div>
+                    <div class="text-xs font-semibold tracking-wider mt-1.5">MODELS</div>
+                </button>
+                <button onclick="openCategoryPage('RESEARCH')" class="category-widget vintage-paper rounded-2xl py-4 text-center active:bg-[#2a2824]">
+                    <div class="text-[#8b5e3c] text-xl"><i class="fa-solid fa-flask"></i></div>
+                    <div class="text-xs font-semibold tracking-wider mt-1.5">RESEARCH</div>
+                </button>
+                <button onclick="openCategoryPage('TOOLS')" class="category-widget vintage-paper rounded-2xl py-4 text-center active:bg-[#2a2824]">
+                    <div class="text-[#8b5e3c] text-xl"><i class="fa-solid fa-tools"></i></div>
+                    <div class="text-xs font-semibold tracking-wider mt-1.5">TOOLS</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Page -->
+    <div id="category-page" onclick="closeCategoryPage()" class="hidden fixed inset-0 bg-[#12110f] z-[200] overflow-y-auto">
+        <div onclick="event.stopImmediatePropagation()" class="max-w-2xl mx-auto">
+            <div class="vintage-paper border-b border-[#3a3630] px-5 pt-6 pb-4 sticky top-0 z-10">
+                <div class="flex items-center justify-between">
+                    <button onclick="closeCategoryPage()" class="text-[#8b5e3c] font-semibold flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>MAIN PAGE</span>
+                    </button>
+                    <div id="category-page-title" class="font-serif text-xl tracking-widest text-[#e8d9c2]"></div>
+                    <div></div>
+                </div>
+                <div id="category-page-subtitle" class="text-center text-xs text-[#8b7f6e] mt-1 tracking-[2px]"></div>
+            </div>
+            <div id="category-articles" class="px-4 pt-4 pb-12"></div>
+        </div>
+    </div>
+
+    <!-- Article Detail Modal -->
+    <div id="modal" onclick="hideModal()" class="hidden fixed inset-0 bg-black/90 z-[300] flex items-end md:items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="vintage-paper w-full max-w-2xl md:mx-auto md:rounded-t-3xl md:mt-8 md:mb-8 rounded-t-3xl max-h-[94vh] overflow-hidden flex flex-col border border-[#3a3630]">
+            
+            <div class="flex items-center justify-between px-5 py-4 border-b border-[#3a3630]">
+                <button onclick="hideModal()" class="font-semibold text-[#8b5e3c]">CLOSE</button>
+                <div class="font-serif tracking-widest text-sm text-[#8b7f6e]">THE AETHER DAILY</div>
+                <div></div>
+            </div>
+            
+            <div id="modal-content" class="flex-1 overflow-y-auto px-6 py-7 text-[15px] leading-relaxed text-[#e8d9c2]"></div>
+            
+            <div class="border-t border-[#3a3630] bg-[#1f1d1a]">
+                <div class="flex justify-between px-5 pt-3">
+                    <button onclick="navigateArticle(-1)" id="prev-btn"
+                            class="flex items-center gap-2 text-sm text-[#8b5e3c] hover:text-[#e8d9c2] transition-colors px-3 py-2">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <span>PREV</span>
+                    </button>
+                    <button onclick="navigateArticle(1)" id="next-btn"
+                            class="flex items-center gap-2 text-sm text-[#8b5e3c] hover:text-[#e8d9c2] transition-colors px-3 py-2">
+                        <span>NEXT</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="p-5 pt-2">
+                    <button onclick="openOnX()" id="x-button"
+                            class="flex items-center justify-center w-full py-3.5 bg-[#e8d9c2] hover:bg-[#d4c3a8] active:bg-[#c5b8a3] transition-colors rounded-2xl">
+                        <i class="fa-brands fa-x-twitter text-[#12110f] text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setDate() {
+            const el = document.getElementById('current-date');
+            const d = new Date();
+            el.textContent = d.toLocaleDateString('en-US', { 
+                weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' 
+            }).toUpperCase();
+        }
+
+        let articles = [
+            // MODELS (5)
+            { id: 0, headline: "OpenAI Unveils GPT-5.6 Family: Sol, Terra & Luna", subheadline: "Limited preview released amid regulatory discussions", summary: "OpenAI announced a limited preview of GPT-5.6 Sol (frontier model), GPT-5.6 Terra (balanced/efficient), and GPT-5.6 Luna (fast and affordable).", author: "OpenAI", handle: "@OpenAI", timestamp: "June 29, 2026 • 2:14 PM", likes: 45200, xURL: "https://x.com/OpenAI/status/2070555272230384038", category: "MODELS" },
+            { id: 5, headline: "Anthropic Releases Claude 4 Opus with 2M Context", subheadline: "Massive context window now available in limited preview", summary: "Claude 4 Opus introduces a groundbreaking 2 million token context window.", author: "Anthropic", handle: "@AnthropicAI", timestamp: "June 29, 2026 • 11:40 AM", likes: 38900, xURL: "https://x.com/AnthropicAI/status/2070540000000000000", category: "MODELS" },
+            { id: 6, headline: "Google DeepMind Drops Gemini 3 Flash", subheadline: "Fastest frontier model yet with record efficiency", summary: "Gemini 3 Flash achieves 3x faster inference while matching previous flagship performance.", author: "Google DeepMind", handle: "@GoogleDeepMind", timestamp: "June 29, 2026 • 9:22 AM", likes: 31200, xURL: "https://x.com/GoogleDeepMind/status/2070500000000000000", category: "MODELS" },
+            { id: 7, headline: "xAI Announces Grok-3 with Real-Time Knowledge", subheadline: "Native integration with live X data and tools", summary: "Grok-3 brings significantly improved reasoning and native access to real-time information.", author: "xAI", handle: "@xai", timestamp: "June 28, 2026 • 8:05 PM", likes: 28700, xURL: "https://x.com/xai/status/2070480000000000000", category: "MODELS" },
+            { id: 8, headline: "Meta Open-Sources Llama 4 405B", subheadline: "Largest open model to date", summary: "Llama 4 405B is now fully open source under a permissive license.", author: "Meta AI", handle: "@MetaAI", timestamp: "June 28, 2026 • 4:30 PM", likes: 25400, xURL: "https://x.com/MetaAI/status/2070460000000000000", category: "MODELS" },
+
+            // TOOLS (5)
+            { id: 1, headline: "Claude Joins Slack as a Full Team Member", subheadline: "New 'Claude Tag' feature lets teams delegate tasks directly", summary: "Anthropic's Claude can now be added to Slack workspaces with access to specific channels and tools.", author: "Claude", handle: "@claudeai", timestamp: "May 23, 2026 • 10:15 AM", likes: 28100, xURL: "https://x.com/claudeai/status/2069468693017268244", category: "TOOLS" },
+            { id: 9, headline: "Cursor 1.0 Launches with Agent Mode", subheadline: "Autonomous coding agent now available", summary: "Cursor 1.0 introduces a powerful agent that can plan, edit, and run code across entire repositories.", author: "Cursor", handle: "@cursor_ai", timestamp: "June 29, 2026 • 1:05 PM", likes: 23400, xURL: "https://x.com/cursor_ai/status/2070530000000000000", category: "TOOLS" },
+            { id: 10, headline: "GitHub Copilot Workspace Goes Public", subheadline: "Full project planning and implementation", summary: "Copilot Workspace can now take a high-level task and turn it into a complete pull request.", author: "GitHub", handle: "@github", timestamp: "June 29, 2026 • 10:40 AM", likes: 19800, xURL: "https://x.com/github/status/2070490000000000000", category: "TOOLS" },
+            { id: 11, headline: "Replit Agent 2.0 Can Build Full Apps", subheadline: "Autonomous app builder reaches new milestone", summary: "Replit's latest agent can create complete, deployable applications from natural language.", author: "Replit", handle: "@replit", timestamp: "June 28, 2026 • 7:20 PM", likes: 15600, xURL: "https://x.com/replit/status/2070450000000000000", category: "TOOLS" },
+            { id: 12, headline: "Perplexity Launches Deep Research Mode", subheadline: "Multi-step research agent for complex queries", summary: "Deep Research Mode performs hours of research in minutes, delivering comprehensive reports.", author: "Perplexity", handle: "@perplexity_ai", timestamp: "June 28, 2026 • 3:55 PM", likes: 17200, xURL: "https://x.com/perplexity_ai/status/2070420000000000000", category: "TOOLS" },
+
+            // RESEARCH (5)
+            { id: 2, headline: "Alibaba's Qwen Launches AgentWorld Language Model", subheadline: "A new 'language world model' that simulates entire environments", summary: "The Qwen team introduced a language world model capable of natively simulating search, terminal, web, OS, and Android environments.", author: "Alibaba Qwen", handle: "@Alibaba_Qwen", timestamp: "June 28, 2026 • 6:45 PM", likes: 12400, xURL: "https://x.com/Alibaba_Qwen/status/2069720365442719867", category: "RESEARCH" },
+            { id: 13, headline: "Stanford Releases SWE-bench Verified", subheadline: "More rigorous software engineering benchmark", summary: "A cleaned and verified version of SWE-bench that better reflects real-world software engineering.", author: "Stanford", handle: "@Stanford", timestamp: "June 29, 2026 • 12:10 PM", likes: 9800, xURL: "https://x.com/Stanford/status/2070510000000000000", category: "RESEARCH" },
+            { id: 14, headline: "DeepMind Publishes AlphaFold 4 Paper", subheadline: "Major leap in protein structure prediction", summary: "AlphaFold 4 achieves near-atomic accuracy on previously unsolved protein complexes.", author: "Google DeepMind", handle: "@GoogleDeepMind", timestamp: "June 28, 2026 • 9:30 PM", likes: 15600, xURL: "https://x.com/GoogleDeepMind/status/2070470000000000000", category: "RESEARCH" },
+            { id: 15, headline: "MIT Shows LLMs Can Discover New Physics", subheadline: "AI identifies novel physical laws from data", summary: "Researchers demonstrate that large models can autonomously discover previously unknown physical relationships.", author: "MIT", handle: "@MIT", timestamp: "June 28, 2026 • 5:15 PM", likes: 11200, xURL: "https://x.com/MIT/status/2070440000000000000", category: "RESEARCH" },
+            { id: 16, headline: "Berkeley Open-Sources OpenDevin 2.0", subheadline: "Open platform for AI software agents", summary: "OpenDevin 2.0 provides a complete open-source framework for developing and evaluating software agents.", author: "Berkeley", handle: "@UCBerkeley", timestamp: "June 27, 2026 • 11:00 AM", likes: 8900, xURL: "https://x.com/UCBerkeley/status/2070410000000000000", category: "RESEARCH" },
+
+            // AGENTS (5)
+            { id: 3, headline: "Nous Research: Mixture-of-Agents Beats Frontier Models", subheadline: "Virtual models using MoA presets outperform Opus 4.8 & GPT-5.5", summary: "The Hermes Agent team demonstrated that clever orchestration of multiple specialized agents can surpass frontier models.", author: "Nous Research", handle: "@NousResearch", timestamp: "June 28, 2026 • 8:50 PM", likes: 9800, xURL: "https://x.com/NousResearch/status/2070610321278988385", category: "AGENTS" },
+            { id: 17, headline: "AutoGPT 5.0 Achieves Full Autonomy", subheadline: "First fully autonomous agent system", summary: "AutoGPT 5.0 can now complete complex, multi-day tasks with minimal human supervision.", author: "AutoGPT", handle: "@AutoGPT", timestamp: "June 29, 2026 • 1:40 PM", likes: 16700, xURL: "https://x.com/AutoGPT/status/2070520000000000000", category: "AGENTS" },
+            { id: 18, headline: "BabyAGI 3.0 Introduces Hierarchical Planning", subheadline: "Multi-level goal decomposition", summary: "BabyAGI 3.0 can break down high-level goals into detailed execution plans automatically.", author: "BabyAGI", handle: "@BabyAGI", timestamp: "June 28, 2026 • 10:25 PM", likes: 12400, xURL: "https://x.com/BabyAGI/status/2070485000000000000", category: "AGENTS" },
+            { id: 19, headline: "MultiOn Raises $20M for Web Agents", subheadline: "AI agents that browse the web for you", summary: "MultiOn's agents can complete complex web tasks such as booking travel or shopping.", author: "MultiOn", handle: "@MultiOn", timestamp: "June 28, 2026 • 7:05 PM", likes: 9300, xURL: "https://x.com/MultiOn/status/2070470000000000000", category: "AGENTS" },
+            { id: 20, headline: "Adept Fuyu-8B Powers Enterprise Agents", subheadline: "Specialized model for computer use", summary: "Adept's latest model excels at controlling computers and completing enterprise workflows.", author: "Adept", handle: "@adept", timestamp: "June 27, 2026 • 4:50 PM", likes: 8700, xURL: "https://x.com/adept/status/2070415000000000000", category: "AGENTS" },
+
+            // COMMUNITY (5)
+            { id: 4, headline: "Massive Free AI Course Vault Shared on X", subheadline: "70-119GB collections of paid courses on LLMs, agents & more", summary: "Popular accounts are distributing enormous Google Drive archives containing premium courses.", author: "Alex Moore", handle: "@heyalexmoore", timestamp: "June 28, 2026 • 11:30 PM", likes: 6700, xURL: "https://x.com/heyalexmoore/status/2070857558886351096", category: "COMMUNITY" },
+            { id: 21, headline: "AI Twitter Spaces Hits 500k Listeners", subheadline: "Largest AI discussion event to date", summary: "A 12-hour Twitter Space on the future of agents drew over 500,000 live listeners.", author: "AI Twitter", handle: "@AITwitter", timestamp: "June 29, 2026 • 12:55 PM", likes: 12400, xURL: "https://x.com/AITwitter/status/2070515000000000000", category: "COMMUNITY" },
+            { id: 22, headline: "r/MachineLearning Hits 5 Million Members", subheadline: "Reddit's premier AI community milestone", summary: "The r/MachineLearning subreddit has reached 5 million subscribers.", author: "Reddit", handle: "@reddit", timestamp: "June 29, 2026 • 9:10 AM", likes: 8900, xURL: "https://x.com/reddit/status/2070490000000000000", category: "COMMUNITY" },
+            { id: 23, headline: "Hugging Face Passes 1 Million Models", subheadline: "Historic milestone for open AI", summary: "The Hugging Face Hub now hosts over one million open models and datasets.", author: "Hugging Face", handle: "@huggingface", timestamp: "June 28, 2026 • 6:20 PM", likes: 15600, xURL: "https://x.com/huggingface/status/2070460000000000000", category: "COMMUNITY" },
+            { id: 24, headline: "AI Art Community Tops 10M on Discord", subheadline: "Midjourney and Stable Diffusion servers grow", summary: "Combined Discord servers for AI art communities have surpassed 10 million members.", author: "Midjourney", handle: "@midjourney", timestamp: "June 28, 2026 • 2:45 PM", likes: 7300, xURL: "https://x.com/midjourney/status/2070435000000000000", category: "COMMUNITY" }
+        ];
+
+        let currentArticle = null;
+        let currentCategory = null;
+        let openedFromCategory = false;
+
+        function openCategoryPage(category) {
+            currentCategory = category;
+            openedFromCategory = false;
+            
+            const page = document.getElementById('category-page');
+            const titleEl = document.getElementById('category-page-title');
+            const subtitleEl = document.getElementById('category-page-subtitle');
+            const articlesContainer = document.getElementById('category-articles');
+
+            titleEl.textContent = category;
+            subtitleEl.textContent = 'TOP STORIES';
+
+            const categoryArticles = articles
+                .filter(a => a.category === category)
+                .sort((a, b) => b.likes - a.likes);
+
+            let html = '';
+            categoryArticles.forEach(article => {
+                html += `
+                    <div onclick="showArticleFromCategory(${article.id})" class="vintage-paper article-card rounded-2xl px-5 py-5 mb-2 cursor-pointer border border-[#3a3630]">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-3 py-px text-xs font-bold tracking-widest bg-[#e8d9c2] text-[#12110f] rounded">${article.category}</span>
+                            <div class="flex items-center gap-1 text-red-600 text-sm font-semibold">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>${(article.likes / 1000).toFixed(1)}k</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="vintage-headline text-2xl leading-none text-[#e8d9c2] pr-4">${article.headline}</h3>
+                        
+                        <p class="mt-3 text-[14.5px] text-[#c5b8a3] line-clamp-3">${article.summary}</p>
+                        
+                        <div class="flex items-center justify-between mt-4 text-xs">
+                            <div>
+                                <span class="font-semibold text-[#e8d9c2]">${article.author}</span>
+                                <span class="text-[#8b5e3c]"> • ${article.timestamp}</span>
+                            </div>
+                            <span class="text-[#8b5e3c] font-medium">${article.handle}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            articlesContainer.innerHTML = html;
+            page.style.display = 'block';
+            page.classList.add('page-turn');
+            setTimeout(() => page.classList.remove('page-turn'), 700);
+        }
+
+        function closeCategoryPage() {
+            document.getElementById('category-page').style.display = 'none';
+        }
+
+        function showArticleFromCategory(id) {
+            openedFromCategory = true;
+            closeCategoryPage();
+            setTimeout(() => showArticle(id), 180);
+        }
+
+        function showArticle(id) {
+            currentArticle = articles.find(a => a.id === id);
+            if (!currentArticle) return;
+            
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modal-content');
+            
+            content.innerHTML = `
+                <div>
+                    <span class="px-4 py-1 text-xs font-bold tracking-widest bg-[#e8d9c2] text-[#12110f] rounded">${currentArticle.category}</span>
+                </div>
+                
+                <h1 class="vintage-headline text-4xl leading-none mt-4 text-[#e8d9c2]">
+                    ${currentArticle.headline}
+                </h1>
+                
+                <p class="mt-2 text-2xl text-[#c5b8a3] font-medium tracking-tight">${currentArticle.subheadline}</p>
+                
+                <div class="flex justify-between items-center my-7 text-sm border-y border-[#3a3630] py-4">
+                    <div>
+                        <div class="font-bold">${currentArticle.author}</div>
+                        <div class="text-[#8b5e3c]">${currentArticle.handle}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-[#8b7f6e]">${currentArticle.timestamp}</div>
+                        <div class="flex items-center justify-end gap-1 mt-0.5 text-red-600 font-bold">
+                            <i class="fa-solid fa-heart"></i>
+                            <span>${currentArticle.likes.toLocaleString()}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="prose text-[#e8d9c2] leading-[1.7]">
+                    <p>${currentArticle.summary}</p>
+                    <div class="mt-8 text-xs text-[#8b7f6e] border-t border-[#3a3630] pt-4">
+                        This dispatch was sourced from X and reflects the most discussed developments in artificial intelligence.
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('x-button').style.display = 'flex';
+            updateNavButtons();
+            modal.style.display = 'flex';
+        }
+        
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            if (!currentArticle) return;
+            
+            const currentIndex = articles.findIndex(a => a.id === currentArticle.id);
+            prevBtn.style.opacity = currentIndex > 0 ? '1' : '0.3';
+            prevBtn.style.pointerEvents = currentIndex > 0 ? 'auto' : 'none';
+            nextBtn.style.opacity = currentIndex < articles.length - 1 ? '1' : '0.3';
+            nextBtn.style.pointerEvents = currentIndex < articles.length - 1 ? 'auto' : 'none';
+        }
+
+        function navigateArticle(direction) {
+            if (!currentArticle) return;
+            const currentIndex = articles.findIndex(a => a.id === currentArticle.id);
+            const newIndex = currentIndex + direction;
+            if (newIndex >= 0 && newIndex < articles.length) {
+                showArticle(articles[newIndex].id);
+            }
+        }
+        
+        function hideModal() {
+            document.getElementById('modal').style.display = 'none';
+            if (openedFromCategory && currentCategory) {
+                setTimeout(() => {
+                    openCategoryPage(currentCategory);
+                    openedFromCategory = false;
+                }, 200);
+            }
+        }
+        
+        function openOnX() {
+            if (currentArticle?.xURL) {
+                window.open(currentArticle.xURL, '_blank');
+            }
+        }
+
+        function init() {
+            setDate();
+            console.log('%c[Aether Daily] X button restored with box and proper scaling.', 'color:#8b7f6e');
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
