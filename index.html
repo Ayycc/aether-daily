@@ -31,8 +31,17 @@
         .masthead {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 900;
-            letter-spacing: 0.25em;
+            font-size: clamp(2.25rem, 11vw, 4.5rem);
+            letter-spacing: clamp(0.06em, 2vw, 0.25em);
             text-shadow: 2px 2px 0 #3a3630;
+            max-width: 100%;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .masthead-daily {
+            font-size: clamp(1.75rem, 9vw, 3.75rem);
+            letter-spacing: clamp(0.08em, 1.5vw, 0.2em);
         }
 
         .vintage-headline {
@@ -96,15 +105,15 @@
     </div>
 
     <!-- Dark Vintage Masthead -->
-    <div class="vintage-paper border-b border-[#3a3630] px-5 pt-7 pb-5">
-        <div class="max-w-2xl mx-auto flex flex-col items-center">
-            <div class="flex items-center justify-center w-full gap-4">
-                <div class="h-px flex-1 bg-gradient-to-r from-transparent to-[#8b5e3c]"></div>
-                <h1 class="masthead text-7xl tracking-[0.3em] text-[#e8d9c2]">AETHER</h1>
-                <div class="h-px flex-1 bg-gradient-to-l from-transparent to-[#8b5e3c]"></div>
+    <div class="vintage-paper border-b border-[#3a3630] px-4 pt-7 pb-5 overflow-hidden">
+        <div class="max-w-2xl mx-auto flex flex-col items-center w-full">
+            <div class="flex items-center justify-center w-full gap-2 sm:gap-4">
+                <div class="hidden sm:block h-px flex-1 bg-gradient-to-r from-transparent to-[#8b5e3c]"></div>
+                <h1 class="masthead text-[#e8d9c2]">AETHER</h1>
+                <div class="hidden sm:block h-px flex-1 bg-gradient-to-l from-transparent to-[#8b5e3c]"></div>
             </div>
             <div class="-mt-2">
-                <span class="text-6xl font-black tracking-[0.2em] text-[#e8d9c2]">DAILY</span>
+                <span class="masthead-daily font-black text-[#e8d9c2]">DAILY</span>
             </div>
             
             <div class="mt-3 text-center">
