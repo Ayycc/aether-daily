@@ -224,8 +224,9 @@
                 
                 <div class="p-5 pt-2">
                     <button onclick="openOnX()" id="x-button"
-                            class="flex items-center justify-center w-full py-3.5 bg-[#e8d9c2] hover:bg-[#d4c3a8] active:bg-[#c5b8a3] transition-colors rounded-2xl">
+                            class="flex flex-col items-center justify-center gap-2 w-full py-3.5 bg-[#e8d9c2] hover:bg-[#d4c3a8] active:bg-[#c5b8a3] transition-colors rounded-2xl">
                         <i class="fa-brands fa-x-twitter text-[#12110f] text-3xl"></i>
+                        <span id="x-button-label" class="text-[#12110f] text-xs font-bold tracking-[1.5px]">VIEW POST ON X</span>
                     </button>
                 </div>
             </div>
@@ -416,6 +417,7 @@
             `;
             
             document.getElementById('x-button').style.display = 'flex';
+            updateXButton();
             updateNavButtons();
             modal.style.display = 'flex';
         }
@@ -451,9 +453,30 @@
             }
         }
         
+        function updateXButton() {
+            const button = document.getElementById('x-button');
+            const label = document.getElementById('x-button-label');
+            if (!button || !currentArticle?.xURL) {
+                if (button) button.style.display = 'none';
+                return;
+            }
+
+            button.style.display = 'flex';
+            if (label) {
+                if (currentArticle.xLinkType === 'profile') {
+                    label.textContent = `VIEW ${currentArticle.handle} ON X`;
+                } else if (currentArticle.xLinkType === 'search') {
+                    label.textContent = 'SEARCH ON X';
+                } else {
+                    label.textContent = 'VIEW POST ON X';
+                }
+            }
+            button.setAttribute('aria-label', label?.textContent ?? 'View on X');
+        }
+
         function openOnX() {
             if (currentArticle?.xURL) {
-                window.open(currentArticle.xURL, '_blank');
+                window.open(currentArticle.xURL, '_blank', 'noopener,noreferrer');
             }
         }
 
