@@ -23,7 +23,10 @@ jobs:
       - name: Refresh articles
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-        run: node scripts/refresh-articles.mjs
+        run: |
+          node scripts/refresh-articles.mjs
+          node scripts/sanitize-x-urls.mjs
+          node scripts/check-x-urls.mjs
 
       - name: Commit updated feed
         run: |

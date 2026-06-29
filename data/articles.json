@@ -13,7 +13,8 @@
       "likes": 52697,
       "xURL": "https://x.com/OpenAI/status/2070555272230384038",
       "category": "MODELS",
-      "isHero": true
+      "isHero": true,
+      "xLinkType": "post"
     },
     {
       "id": 5,
@@ -24,9 +25,10 @@
       "handle": "@AnthropicAI",
       "timestamp": "June 29, 2026 • 8:45 AM",
       "likes": 43401,
-      "xURL": "https://x.com/AnthropicAI/status/2070540000000000000",
+      "xURL": "https://x.com/AnthropicAI",
       "category": "MODELS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 6,
@@ -37,9 +39,10 @@
       "handle": "@GoogleDeepMind",
       "timestamp": "June 29, 2026 • 10:20 AM",
       "likes": 35688,
-      "xURL": "https://x.com/GoogleDeepMind/status/2070500000000000000",
+      "xURL": "https://x.com/GoogleDeepMind",
       "category": "MODELS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 7,
@@ -50,9 +53,10 @@
       "handle": "@xai",
       "timestamp": "June 29, 2026 • 12:55 PM",
       "likes": 35244,
-      "xURL": "https://x.com/xai/status/2070480000000000000",
+      "xURL": "https://x.com/xai/status/1868045124028268983",
       "category": "MODELS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "post"
     },
     {
       "id": 8,
@@ -63,9 +67,10 @@
       "handle": "@MetaAI",
       "timestamp": "June 29, 2026 • 2:14 PM",
       "likes": 30169,
-      "xURL": "https://x.com/MetaAI/status/2070460000000000000",
+      "xURL": "https://x.com/MetaAI",
       "category": "MODELS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 1,
@@ -78,7 +83,8 @@
       "likes": 31723,
       "xURL": "https://x.com/claudeai/status/2069468693017268244",
       "category": "TOOLS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "post"
     },
     {
       "id": 9,
@@ -89,9 +95,10 @@
       "handle": "@cursor_ai",
       "timestamp": "June 29, 2026 • 7:05 PM",
       "likes": 26295,
-      "xURL": "https://x.com/cursor_ai/status/2070530000000000000",
+      "xURL": "https://x.com/cursor_ai/status/2039768512894505086",
       "category": "TOOLS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "post"
     },
     {
       "id": 10,
@@ -102,9 +109,10 @@
       "handle": "@github",
       "timestamp": "June 29, 2026 • 9:30 PM",
       "likes": 21603,
-      "xURL": "https://x.com/github/status/2070490000000000000",
+      "xURL": "https://x.com/github",
       "category": "TOOLS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 11,
@@ -115,9 +123,10 @@
       "handle": "@replit",
       "timestamp": "June 29, 2026 • 6:10 AM",
       "likes": 18456,
-      "xURL": "https://x.com/replit/status/2070450000000000000",
+      "xURL": "https://x.com/replit",
       "category": "TOOLS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 12,
@@ -128,9 +137,10 @@
       "handle": "@perplexity_ai",
       "timestamp": "June 29, 2026 • 8:45 AM",
       "likes": 18997,
-      "xURL": "https://x.com/perplexity_ai/status/2070420000000000000",
+      "xURL": "https://x.com/perplexity_ai",
       "category": "TOOLS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 2,
@@ -143,7 +153,8 @@
       "likes": 14025,
       "xURL": "https://x.com/Alibaba_Qwen/status/2069720365442719867",
       "category": "RESEARCH",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "post"
     },
     {
       "id": 13,
@@ -154,9 +165,10 @@
       "handle": "@Stanford",
       "timestamp": "June 29, 2026 • 12:55 PM",
       "likes": 11443,
-      "xURL": "https://x.com/Stanford/status/2070510000000000000",
+      "xURL": "https://x.com/Stanford",
       "category": "RESEARCH",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 14,
@@ -167,9 +179,10 @@
       "handle": "@GoogleDeepMind",
       "timestamp": "June 29, 2026 • 2:14 PM",
       "likes": 17866,
-      "xURL": "https://x.com/GoogleDeepMind/status/2070470000000000000",
+      "xURL": "https://x.com/GoogleDeepMind",
       "category": "RESEARCH",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 15,
@@ -180,9 +193,10 @@
       "handle": "@MIT",
       "timestamp": "June 29, 2026 • 4:30 PM",
       "likes": 12433,
-      "xURL": "https://x.com/MIT/status/2070440000000000000",
+      "xURL": "https://x.com/MIT",
       "category": "RESEARCH",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 16,
@@ -193,9 +207,10 @@
       "handle": "@UCBerkeley",
       "timestamp": "June 29, 2026 • 7:05 PM",
       "likes": 11153,
-      "xURL": "https://x.com/UCBerkeley/status/2070410000000000000",
+      "xURL": "https://x.com/UCBerkeley",
       "category": "RESEARCH",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 3,
@@ -208,7 +223,8 @@
       "likes": 11280,
       "xURL": "https://x.com/NousResearch/status/2070610321278988385",
       "category": "AGENTS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "post"
     },
     {
       "id": 17,
@@ -219,9 +235,10 @@
       "handle": "@AutoGPT",
       "timestamp": "June 29, 2026 • 6:10 AM",
       "likes": 19225,
-      "xURL": "https://x.com/AutoGPT/status/2070520000000000000",
+      "xURL": "https://x.com/AutoGPT",
       "category": "AGENTS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 18,
@@ -232,9 +249,10 @@
       "handle": "@BabyAGI",
       "timestamp": "June 29, 2026 • 8:45 AM",
       "likes": 14491,
-      "xURL": "https://x.com/BabyAGI/status/2070485000000000000",
+      "xURL": "https://x.com/BabyAGI",
       "category": "AGENTS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 19,
@@ -245,9 +263,10 @@
       "handle": "@MultiOn",
       "timestamp": "June 29, 2026 • 10:20 AM",
       "likes": 10925,
-      "xURL": "https://x.com/MultiOn/status/2070470000000000000",
+      "xURL": "https://x.com/MultiOn",
       "category": "AGENTS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 20,
@@ -258,9 +277,10 @@
       "handle": "@adept",
       "timestamp": "June 29, 2026 • 12:55 PM",
       "likes": 10306,
-      "xURL": "https://x.com/adept/status/2070415000000000000",
+      "xURL": "https://x.com/adept",
       "category": "AGENTS",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 4,
@@ -273,7 +293,8 @@
       "likes": 7850,
       "xURL": "https://x.com/heyalexmoore/status/2070857558886351096",
       "category": "COMMUNITY",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "post"
     },
     {
       "id": 21,
@@ -284,9 +305,10 @@
       "handle": "@AITwitter",
       "timestamp": "June 29, 2026 • 4:30 PM",
       "likes": 13928,
-      "xURL": "https://x.com/AITwitter/status/2070515000000000000",
+      "xURL": "https://x.com/search?q=AI%20Twitter%20Spaces&src=typed_query",
       "category": "COMMUNITY",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "search"
     },
     {
       "id": 22,
@@ -297,9 +319,10 @@
       "handle": "@reddit",
       "timestamp": "June 29, 2026 • 7:05 PM",
       "likes": 9814,
-      "xURL": "https://x.com/reddit/status/2070490000000000000",
+      "xURL": "https://x.com/reddit",
       "category": "COMMUNITY",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 23,
@@ -310,9 +333,10 @@
       "handle": "@huggingface",
       "timestamp": "June 29, 2026 • 9:30 PM",
       "likes": 18533,
-      "xURL": "https://x.com/huggingface/status/2070460000000000000",
+      "xURL": "https://x.com/huggingface",
       "category": "COMMUNITY",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     },
     {
       "id": 24,
@@ -323,9 +347,10 @@
       "handle": "@midjourney",
       "timestamp": "June 29, 2026 • 6:10 AM",
       "likes": 8119,
-      "xURL": "https://x.com/midjourney/status/2070435000000000000",
+      "xURL": "https://x.com/midjourney",
       "category": "COMMUNITY",
-      "isHero": false
+      "isHero": false,
+      "xLinkType": "profile"
     }
   ]
 }
