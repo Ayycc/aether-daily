@@ -3,6 +3,7 @@
 import { readFileSync, writeFileSync, appendFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isPlaceholderXUrl, resolveArticleXLink } from './x-url-utils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -94,6 +95,7 @@ async function fetchFromX(existingArticles) {
       timestamp: formatTimestamp(createdAt, index),
       likes: metrics.like_count ?? 0,
       xURL: `https://x.com/${author.username}/status/${tweet.id}`,
+      xLinkType: 'post',
       category: CATEGORIES[index % CATEGORIES.length],
       isHero: false,
     };
@@ -144,11 +146,16 @@ export async function refreshArticles(options = {}) {
     console.warn(`X API fetch skipped: ${error.message}`);
   }
 
-  articles = articles.map((article, index) => ({
-    ...article,
-    timestamp: formatTimestamp(now, index),
-    likes: Math.max(article.likes, bumpLikes(article.likes * 0.99)),
-  }));
+  articles = articles.map((article, index) => {
+    const sanitized = resolveArticleXLink(article);
+    return {
+      ...article,
+      timestamp: formatTimestamp(now, index),
+      likes: Math.max(article.likes, bumpLikes(article.likes * 0.99)),
+      xURL: sanitized.xURL,
+      xLinkType: sanitized.xLinkType,
+    };
+  });
 
   const hero = pickHero(articles);
   articles = articles.map((article) => ({

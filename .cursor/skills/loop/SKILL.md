@@ -63,11 +63,14 @@ When `/loop` is invoked:
 4. If the user wants a local daemon while developing, start `run-loop.sh start`
 5. Append results to `loop/state.md` — never overwrite that file
 6. Commit and push when running from automation
+7. Run `node scripts/sanitize-x-urls.mjs` and `node scripts/check-x-urls.mjs` before pushing
 
 ## Verification
 
 ```bash
 node scripts/refresh-articles.mjs --force
+node scripts/sanitize-x-urls.mjs
+node scripts/check-x-urls.mjs
 node -e "const f=require('./data/articles.json'); console.log(f.edition, f.lastRefreshed, f.articles.find(a=>a.isHero)?.headline)"
 ```
 
