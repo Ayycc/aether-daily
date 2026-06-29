@@ -21,6 +21,29 @@
             background: #12110f;
             color: #e8d9c2;
         }
+
+        .safe-area-top {
+            padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+        }
+
+        .safe-area-x {
+            padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+            padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+        }
+
+        .safe-area-bottom {
+            padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+        }
+
+        .category-back-btn {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: -0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+        }
         
         .vintage-paper {
             background: #1f1d1a;
@@ -194,18 +217,17 @@
     <!-- Category Page -->
     <div id="category-page" onclick="closeCategoryPage()" class="hidden fixed inset-0 bg-[#12110f] z-[200] overflow-y-auto">
         <div onclick="event.stopImmediatePropagation()" class="max-w-2xl mx-auto">
-            <div class="vintage-paper border-b border-[#3a3630] px-5 pt-6 pb-4 sticky top-0 z-10">
-                <div class="flex items-center justify-between">
-                    <button onclick="closeCategoryPage()" class="text-[#8b5e3c] font-semibold flex items-center gap-2">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <span>MAIN PAGE</span>
-                    </button>
+            <div class="vintage-paper border-b border-[#3a3630] sticky top-0 z-10 safe-area-top safe-area-x pb-4">
+                <button onclick="closeCategoryPage()" class="category-back-btn text-[#8b5e3c] font-semibold active:bg-[#2a2824]">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>MAIN PAGE</span>
+                </button>
+                <div class="text-center mt-1">
                     <div id="category-page-title" class="font-serif text-xl tracking-widest text-[#e8d9c2]"></div>
-                    <div></div>
+                    <div id="category-page-subtitle" class="text-xs text-[#8b7f6e] mt-1 tracking-[2px]"></div>
                 </div>
-                <div id="category-page-subtitle" class="text-center text-xs text-[#8b7f6e] mt-1 tracking-[2px]"></div>
             </div>
-            <div id="category-articles" class="px-4 pt-4 pb-12"></div>
+            <div id="category-articles" class="px-4 pt-4 pb-12 safe-area-bottom safe-area-x"></div>
         </div>
     </div>
 
